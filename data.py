@@ -9,8 +9,8 @@ class Data:
     def __init__(self, pathStr='./data/lfw-selected/'):
 
         self.path = os.path.normpath(pathStr)
-        print(self.path)
         assert os.path.isdir(self.path)
+        print(f'# {self.path}')
 
         with open(os.path.join(self.path, 'L/attributes.pickle'), 'rb') as f:
             rv = pickle.load(f)
@@ -22,7 +22,6 @@ class Data:
         self.attrListT = rv['list']
         self.NT = len(self.attrListT)
 
-        print(f'# {self.path}')
         print(f'# NL = {self.NL}, NT = {self.NT}')
 
 
