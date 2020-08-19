@@ -3,7 +3,7 @@ import os.path
 import pickle
 import cv2
 
-
+ 
 class Data:
 
     def __init__(self, pathStr='./data/lfw-selected/'):
