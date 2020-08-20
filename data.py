@@ -58,5 +58,6 @@ if __name__ == '__main__':
 
     img = np.mean(XL, axis=0)
     cv2.imwrite('meanL.png', img)
+    np.save('meanL.npy', img)
     img = np.mean(XT, axis=0)
     cv2.imwrite('meanT.png', img)
