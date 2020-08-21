@@ -55,13 +55,13 @@ if __name__ == '__main__':
     network = NN(D=D, H=H)
     model = network.to(device)
     print(model)
-    #optimizer = optim.SGD(model.parameters(), lr = 0.01, momentum = 0.9)
-    optimizer = optim.Adam(model.parameters())
+    #optimizer = optim.Adam(model.parameters())  # lr=0.001
+    optimizer = optim.Adam(model.parameters(), lr=0.0005)
     print(optimizer)
 
     ### learning
     #
-    nepoch = 100
+    nepoch = 50
 
     for i in range(nepoch):
 
@@ -73,19 +73,20 @@ if __name__ == '__main__':
 
             optimizer.zero_grad()
             Z = model(Xb)
-            loss = F.mse_loss(Xb, Z, reduction='sum')
+            loss = F.mse_loss(Xb, Z, reduction='mean')
             loss.backward()
             optimizer.step()
 
             sqeL[ib] = loss.clone().cpu().detach().numpy()
             
-        msqeL = np.sum(sqeL) / (NL*D)
+        msqeL = np.mean(sqeL) # We can compute 'mean of the means' so that all the batch has the same size.
         print(i, msqeL)
 
 
     ### evaluation (L)
     #
     model.eval()
+    dlL = torch.utils.data.DataLoader(dsL, batch_size=batchsize, shuffle=False, drop_last=False)
 
     for ib, Xb in enumerate(dlL):
         Z = model(Xb)
@@ -96,16 +97,14 @@ if __name__ == '__main__':
 
     print(f'# L: {msqeL}')
 
-    ### preparing the data (T)
+    ### evaluation & reconstruction (T)
     #
+    model.eval()
     dsT = LFWDataset.LFWDataset(LT='T')
     NT = dsT.ndat
     print(NT, D)
     dlT = torch.utils.data.DataLoader(dsT, batch_size=batchsize, shuffle=False, drop_last=False)
 
-    ### evaluation & reconstruction (T)
-    #
-    model.eval()
     sqeT = np.empty(len(dlT))
     for ib, Xb in enumerate(dlT):
         Z = model(Xb)
