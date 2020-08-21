@@ -21,7 +21,7 @@ class LFWDataset(torch.utils.data.Dataset):
 
         # reading the mean
         fn = os.path.join(self.dataRoot, 'meanL.npy')
-        self.meanL = np.load(fn)
+        self.meanL = np.load(fn).astype(np.float32)
 
         assert LT == 'L' or LT == 'T'
         self.LT = LT
@@ -35,7 +35,7 @@ class LFWDataset(torch.utils.data.Dataset):
         fn = os.path.join(dataLT, 'img0000.png')
         img = cv2.imread(fn)
         assert img.shape == LFWDataset.imageShape
-        X = np.empty((self.ndat,) + img.shape)
+        X = np.empty((self.ndat,) + img.shape, dtype=np.float32)
         for i in range(self.ndat):
             fn = os.path.join(dataLT, f'img{i:04d}.png')
             #print(fn)
@@ -56,7 +56,7 @@ class LFWDataset(torch.utils.data.Dataset):
     
     def __getitem__(self, idx):
 
-        return self.X[idx, ::]
+        return self.X[idx, ::].astype(np.float32)
     
 
 
