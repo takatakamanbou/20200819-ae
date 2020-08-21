@@ -9,4 +9,4 @@
 
 ## 20200819
 
-[pca.ipynb](./pca.ipynb)
+- [pca.ipynb](./pca.ipynb)
