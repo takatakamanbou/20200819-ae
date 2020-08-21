@@ -5,7 +5,7 @@
 
 ## 20200821
 
-- [inearAE.ipynb](./linearAE.ipynb)
+- [linearAE.ipynb](./linearAE.ipynb)
 - cf. https://github.com/takatakamanbou/20200820-pytorch
 
 ## 20200819
