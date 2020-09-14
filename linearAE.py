@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
     ### device
     #
-    use_gpu_if_available = False
+    use_gpu_if_available = True
     if use_gpu_if_available and torch.cuda.is_available():
         device = torch.device('cuda')
     else:
