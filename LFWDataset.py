@@ -43,7 +43,7 @@ class LFWDataset(torch.utils.data.Dataset):
 
         # mean subtraction & scaling
         X -= self.meanL
-        X /= 255.0
+        X /= 2550.0
 
         #self.X = X
         self.X = X.reshape((self.ndat, -1))
