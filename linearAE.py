@@ -22,6 +22,7 @@ class NN(nn.Module):
 
     def forward(self, X):
         Y = self.fc1(X)
+        print('###', torch.isnan(Y).any().cpu())
         Z = self.fc2(Y)
         return Z
 
@@ -76,8 +77,7 @@ if __name__ == '__main__':
 
             optimizer.zero_grad()
             Z = model(Xb)
-            #print('###', torch.isnan(Z).any().cpu())
-            print('###', torch.isnan(torch.tensor([1, float('nan'), 2])).any().cpu())
+            print('###', torch.isnan(Z).any().cpu())
             loss = F.mse_loss(Xb, Z, reduction='mean')
             print('@@@', loss.clone().cpu().detach().numpy())
             loss.backward()
