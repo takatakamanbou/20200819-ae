@@ -77,6 +77,7 @@ if __name__ == '__main__':
             optimizer.zero_grad()
             Z = model(Xb)
             loss = F.mse_loss(Xb, Z, reduction='mean')
+            print('@@@', loss.clone().cpu().detach().numpy())
             loss.backward()
             optimizer.step()
 
