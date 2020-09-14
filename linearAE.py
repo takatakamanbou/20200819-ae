@@ -28,6 +28,9 @@ class NN(nn.Module):
 
 if __name__ == '__main__':
 
+    # to check if NaN exists in the backward computation
+    torch.autograd.set_detect_anomaly(True)
+
     torch.manual_seed(0)
 
     ### device
