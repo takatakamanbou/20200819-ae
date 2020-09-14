@@ -76,7 +76,8 @@ if __name__ == '__main__':
 
             optimizer.zero_grad()
             Z = model(Xb)
-            print('###', torch.isnan(Z).any().cpu())
+            #print('###', torch.isnan(Z).any().cpu())
+            print('###', torch.isnan(torch.tensor([1, float('nan'), 2])).any().cpu())
             loss = F.mse_loss(Xb, Z, reduction='mean')
             print('@@@', loss.clone().cpu().detach().numpy())
             loss.backward()
