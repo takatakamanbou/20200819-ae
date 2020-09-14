@@ -21,8 +21,9 @@ class NN(nn.Module):
         self.fc2 = nn.Linear(H, D, bias=False)
 
     def forward(self, X):
+        print('### X:', torch.isnan(X).any().cpu())
         Y = self.fc1(X)
-        print('###', torch.isnan(Y).any().cpu())
+        print('### Y:', torch.isnan(Y).any().cpu())
         Z = self.fc2(Y)
         return Z
 
