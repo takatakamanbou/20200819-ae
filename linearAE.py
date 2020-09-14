@@ -45,7 +45,7 @@ if __name__ == '__main__':
     NL = dsL.ndat
     D = dsL.ndim
     print(NL, D)
-    batchsize = 32
+    batchsize = 2
     dlL = torch.utils.data.DataLoader(dsL, batch_size=batchsize, shuffle=True, drop_last=True)
     nbatch = len(dlL)
 
