@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     ### initializing the network
     #
-    H = 1000
+    H = 100
     network = NN(D=D, H=H)
     model = network.to(device)
     print(model)
