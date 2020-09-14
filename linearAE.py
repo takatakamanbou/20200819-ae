@@ -59,8 +59,7 @@ if __name__ == '__main__':
     model = network.to(device)
     print(model)
     #optimizer = optim.Adam(model.parameters())  # lr=0.001
-    #optimizer = optim.Adam(model.parameters(), lr=0.0005)
-    optimizer = optim.Adam(model.parameters(), lr=0.00005)
+    optimizer = optim.Adam(model.parameters(), lr=0.0005)
     print(optimizer)
 
     ### learning
