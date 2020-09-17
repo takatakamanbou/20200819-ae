@@ -64,6 +64,8 @@ if __name__ == '__main__':
     optimizer = optim.Adam(model.parameters(), lr=0.0005)
     print(optimizer)
 
+    criterion = nn.MSELoss()
+
     ### learning
     #
     nepoch = 50
@@ -79,8 +81,9 @@ if __name__ == '__main__':
             optimizer.zero_grad()
             Z = model(Xb)
             print('###', torch.isnan(Z).any().cpu())
-            loss = F.mse_loss(Xb, Z, reduction='mean')
-            print('@@@', loss.clone().cpu().detach().numpy())
+            #loss = F.mse_loss(Xb, Z, reduction='mean')
+            #print('@@@', loss.clone().cpu().detach().numpy())
+            loss = criterion(Xb, Z)
             loss.backward()
             optimizer.step()
 
