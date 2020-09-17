@@ -21,9 +21,9 @@ class NN(nn.Module):
         self.fc2 = nn.Linear(H, D, bias=False)
 
     def forward(self, X):
-        print('### X:', torch.isnan(X).any().cpu())
+        #print('### X:', torch.isnan(X).any().cpu())
         Y = self.fc1(X)
-        print('### Y:', torch.isnan(Y).any().cpu())
+        #print('### Y:', torch.isnan(Y).any().cpu())
         Z = self.fc2(Y)
         return Z
 
@@ -78,12 +78,12 @@ if __name__ == '__main__':
 
         for ib, Xb in enumerate(dlL):
 
-            optimizer.zero_grad()
             Z = model(Xb)
-            print('###', torch.isnan(Z).any().cpu())
+            #print('###', torch.isnan(Z).any().cpu())
             #loss = F.mse_loss(Xb, Z, reduction='mean')
             #print('@@@', loss.clone().cpu().detach().numpy())
             loss = criterion(Xb, Z)
+            optimizer.zero_grad()
             loss.backward()
             optimizer.step()
 
